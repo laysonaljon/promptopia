@@ -6,6 +6,10 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
 const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
+  if (!post || !post.creator) {
+    // Render null or a placeholder component, or return a loading state
+    return null;
+  }
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
@@ -34,7 +38,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
           onClick={handleProfileClick}
         >
           <Image
-            src={post.creator.image}
+            src= {post.creator.image}
             alt='user_image'
             width={40}
             height={40}
